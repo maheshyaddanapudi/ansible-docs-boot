@@ -1,5 +1,6 @@
 package com.github.maheshyaddanapudi.redhat.ansibledocsboot.service;
 
+import com.github.maheshyaddanapudi.redhat.ansibledocsboot.constants.Constants;
 import com.github.maheshyaddanapudi.redhat.ansibledocsboot.db.entities.*;
 import com.github.maheshyaddanapudi.redhat.ansibledocsboot.db.repositories.*;
 import com.github.maheshyaddanapudi.redhat.ansibledocsboot.dto.internal.CommandDetailsDTO;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Profile(Constants.BASIC)
 @CacheConfig(cacheNames = "ansible-docs-boot")
 public class AnsibleDocsBootService {
 
