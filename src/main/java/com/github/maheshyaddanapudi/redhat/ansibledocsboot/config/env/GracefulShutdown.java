@@ -30,7 +30,7 @@ public class GracefulShutdown implements TomcatConnectorCustomizer, ApplicationL
 	@Value("${awaitTermination:120}")
 	private int awaitTermination;
 
-	@Autowired(required = true)
+	@Autowired(required = false)
 	public DataSource hikariDataSource;
 
 	@Override
