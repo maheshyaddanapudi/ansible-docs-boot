@@ -20,7 +20,6 @@
 		<mariaDB4j.version>2.4.0</mariaDB4j.version>
 		<logbook.version>1.7.1</logbook.version>
 		<openapi-ui.version>1.2.32</openapi-ui.version>
-		<flyway.version>7.5.2</flyway.version>
 		<hikaricp.version>3.2.0</hikaricp.version>
 		<hazlecast-lib.version>3.11.2</hazlecast-lib.version>
 		<jacoco.version>0.8.4</jacoco.version>
@@ -47,7 +46,6 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-			<version>${flyway.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.zaxxer</groupId>

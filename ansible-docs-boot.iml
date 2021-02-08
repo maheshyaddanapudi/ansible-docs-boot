@@ -74,7 +74,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.2.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.2.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.2.3.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.flywaydb:flyway-core:7.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.flywaydb:flyway-core:6.0.8" level="project" />
     <orderEntry type="library" name="Maven: com.zaxxer:HikariCP:3.2.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.30" level="project" />
     <orderEntry type="library" name="Maven: ch.vorburger.mariaDB4j:mariaDB4j:2.4.0" level="project" />
