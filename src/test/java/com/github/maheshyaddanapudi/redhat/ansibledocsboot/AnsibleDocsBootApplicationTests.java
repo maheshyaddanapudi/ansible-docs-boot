@@ -18,7 +18,7 @@ import org.springframework.test.context.ActiveProfiles;
 		DataSourceAutoConfiguration.class,
 		FlywayAutoConfiguration.class
 		})
-@ActiveProfiles(profiles = {Constants.TEST, Constants.MARIADB4J})
+@ActiveProfiles(profiles = {Constants.TEST})
 class AnsibleDocsBootApplicationTests {
 
 	@Test
