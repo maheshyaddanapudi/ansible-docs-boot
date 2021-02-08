@@ -22,9 +22,8 @@ import org.springframework.test.context.ActiveProfiles;
 class AnsibleDocsBootApplicationTests {
 
 	@Test
-	public void customTests() {
-		String args[] = {"--spring.output.ansi.enabled=always"};
-		SpringApplication.run(AnsibleDocsBootApplication.class, args);
+	public void contextLoads() {
+
 	}
 
 }
