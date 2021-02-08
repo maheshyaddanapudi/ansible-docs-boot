@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Profile(value = {"default", Constants.BASIC})
 @CacheConfig(cacheNames = "ansible-docs-boot")
 public class AnsibleDocsBootService {
 

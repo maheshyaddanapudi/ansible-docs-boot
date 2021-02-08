@@ -3,6 +3,7 @@ package com.github.maheshyaddanapudi.redhat.ansibledocsboot.controller.rest.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.maheshyaddanapudi.redhat.ansibledocsboot.constants.Constants;
 import com.github.maheshyaddanapudi.redhat.ansibledocsboot.db.entities.CommandRef;
 import com.github.maheshyaddanapudi.redhat.ansibledocsboot.db.entities.ModuleRef;
 import com.github.maheshyaddanapudi.redhat.ansibledocsboot.db.entities.SubModuleRef;
@@ -11,6 +12,7 @@ import com.github.maheshyaddanapudi.redhat.ansibledocsboot.service.AnsibleDocsBo
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,6 +33,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/")
+@Profile(value = {"default", Constants.BASIC})
 @Tag(name = "Ansible Command Detailer Controller", description = "The Ansible Moduler API")
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class AnsibleDocsBootRestController {
