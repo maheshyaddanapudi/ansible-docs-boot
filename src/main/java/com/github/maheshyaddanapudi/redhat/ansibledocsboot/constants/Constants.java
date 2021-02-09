@@ -13,6 +13,7 @@ public class Constants {
     public static final String ANSIBLE_DOCS = "ansible-docs";
     public static final String ZERO = "0";
     public static final String BASIC = "basic";
+    public static final String DEFAULT = "default";
 
     public static final String GET = "GET";
     public static final String POST = "POST";

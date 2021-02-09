@@ -32,7 +32,7 @@ ENV PATH="${JAVA_HOME}/bin:${PATH}"
 RUN mkdir /appln
 
 # Creating necessary directory structures to host the platform
-RUN mkdir /appln/bin /appln/bin/ansible /appln/bin/elasticsearch /appln/data /appln/data/mariadb4j /appln/data/elasticsearch /appln/scripts /appln/logs /appln/tmp /appln/tmp/ansible-docs-boot
+RUN mkdir /appln/bin /appln/bin/ansible-docs-boot /appln/data /appln/data/mariadb4j /appln/scripts /appln/logs /appln/tmp /appln/tmp/ansible-docs-boot
 
 # Creating a dedicated user ansible
 RUN groupadd -g 999 ansible \
@@ -60,11 +60,11 @@ RUN cd /appln/tmp \
   && mvn clean install -q
 
 # Moving the executable / build to the run location
-RUN mv /appln/tmp/ansible-docs-boot/target/ansible-docs-boot*.jar /appln/bin/ansible
+RUN mv /appln/tmp/ansible-docs-boot/target/ansible-docs-boot*.jar /appln/bin/ansible-docs-boot/
 
 # Creating the startup script, by passing the env variables to run the jar. Logs are written directly to continer logs.
 RUN echo "#!/bin/bash" > /appln/scripts/startup.sh \
-  && echo "cd /appln/bin/ansible" >> /appln/scripts/startup.sh \
+  && echo "cd /appln/bin/ansible-docs-boot" >> /appln/scripts/startup.sh \
   && echo "java \
   -Dspring.profiles.active=\$SPRING_PROFILES_ACTIVE \
   -DMYSQL_DATABASE=\$MYSQL_DATABASE \
@@ -73,7 +73,7 @@ RUN echo "#!/bin/bash" > /appln/scripts/startup.sh \
   -DMYSQL_DATABASE_HOST=\$MYSQL_DATABASE_HOST \
   -DMYSQL_DATABASE_PORT=\$MYSQL_DATABASE_PORT \
   -DMARIADB4J_DIR=\$MARIADB4J_DIR \
-  -jar ansible-docs-boot-$ansible_VERSION.jar" >> /appln/scripts/startup.sh
+  -jar ansible-docs-boot-$ANSIBLE_VERSION.jar" >> /appln/scripts/startup.sh
 
 # Owning the executable scripts
 RUN sudo chown -R ansible:ansible /appln/scripts /appln/bin
@@ -81,7 +81,7 @@ RUN sudo chmod -R +x /appln/scripts /appln/bin
 RUN sudo chmod -R +w /appln/data
 
 # Removing the temp folder i.e. source code etc used for creating the executable / build.
-RUN sudo rm -rf /appln/tmp/* /tmp/* /appln/data/elasticsearch/* /appln/data/mariadb4j/*
+RUN sudo rm -rf /appln/tmp/* /tmp/* /appln/data/mariadb4j/*
 
 # Exposing the necessary ports
 EXPOSE 8080

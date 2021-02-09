@@ -19,7 +19,7 @@ import java.time.Duration;
 import java.util.Properties;
 
 @Configuration
-@Profile(Constants.MARIADB4J)
+@Profile(value = {Constants.MARIADB4J, Constants.DEFAULT})
 public class EmbeddedMariaDbConfig {
 
 	private final Logger logger = LoggerFactory.getLogger(EmbeddedMariaDbConfig.class.getSimpleName());
