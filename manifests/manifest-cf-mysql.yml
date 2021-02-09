@@ -1,0 +1,10 @@
+---
+applications:
+  - name: ansible-docs-boot
+    memory: 4096M
+    random-route: true
+    path: ../target/ansible-docs-boot-2.8.jar
+    env:
+      SPRING_PROFILES_ACTIVE: basic,cf-mysql
+    services:
+      - cf-mysql-service
