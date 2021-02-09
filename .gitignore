@@ -27,3 +27,4 @@ target/
 .circleci/
 .travis.yml
 *.iml
+.DS_Store
