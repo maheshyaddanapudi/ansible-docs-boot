@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: Ansible Docs Boot
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+awaitTermination: 120
+
+hazelcast:
+  health:
+    monitoring:
+      level: OFF
+
+logging:
+  level:
+    root: INFO
+    org.zalando.logbook: TRACE
+    com.hazelcast.internal.diagnostics.HealthMonitor: off
+  pattern:
+    console: '[%p ] %d{yyyy-MM-dd HH:mm:ss,SSS} %M - %m%n'
+
+logbook:
+  filter:
+    enabled: true
+  write:
+    level: INFO
+  format:
+    style: splunk
+  exclude: [/, /actuator/**, /v3/api-docs/**, /swagger-ui/**, /index.html, /images/**, /swagger-ui.js, /lib/**, /css/**]
+  strategy: body-only-if-status-at-least
+  minimum-status: 400
