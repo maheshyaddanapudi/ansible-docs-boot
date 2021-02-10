@@ -4,7 +4,7 @@ on:
   push:
     # Publish `develop` as Docker `latest` image.
     branches:
-      - main
+      - develop
 
     # Publish `v1.2.3` tags as releases.
     tags:
@@ -15,7 +15,7 @@ on:
 
 env:
   # TODO: Change variable to your image's name.
-  IMAGE_NAME: image
+  IMAGE_NAME: ansible-docs-boot
 
 jobs:
   # Run tests.
@@ -67,10 +67,10 @@ jobs:
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
 
           # Use Docker `latest` tag convention
-          [ "$VERSION" == "main" ] && VERSION=latest
+          [ "$VERSION" == "develop" ] && VERSION=latest
 
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+          docker tag $IMAGE_NAME $IMAGE_ID-dev:$VERSION
+          docker push $IMAGE_ID-dev:$VERSION
