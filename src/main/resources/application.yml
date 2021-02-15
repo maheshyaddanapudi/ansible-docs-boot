@@ -40,7 +40,7 @@ logbook:
 
 MYSQL_DATABASE: ansible
 MYSQL_USER: ansible
-MYSQL_PASSWORD: ansible
+MYSQL_PASSWORD: Ansible@1234
 
 # This directory has to be explicitly set to let Embedded MariaDB know the master persistence location.
 # Use embedded/persistence/mariadb4j to have a common persistence location for all embedded components.
@@ -52,7 +52,7 @@ mariadb4j:
   dataDir: ${MARIADB4J_DIR}/data
   libDir: ${MARIADB4J_DIR}/lib
   baseDir: ${MARIADB4J_DIR}/base
-  port: 0
+  port: 3600
   maxConnections: 100000
   wait:
     timeout: 18000000
