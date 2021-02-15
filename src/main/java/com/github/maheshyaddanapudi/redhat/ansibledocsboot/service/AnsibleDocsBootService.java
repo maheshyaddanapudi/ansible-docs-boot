@@ -42,7 +42,10 @@ public class AnsibleDocsBootService {
     @Cacheable
     public List<ModuleRef> getAllModules()
     {
-        return this.moduleRefRepository.findAll();
+        logger.info(">>getAllModules()");
+        List<ModuleRef> moduleRefs = this.moduleRefRepository.findAll();
+        logger.info("<<getAllModules()");
+        return moduleRefs;
     }
 
     @Cacheable
@@ -106,6 +109,8 @@ public class AnsibleDocsBootService {
     @Cacheable
     public CommandDetailsDTO getCommandDetailsByModuleNameAndSubModuleNameAndCommand(String moduleName , String subModuleName , String command)
     {
+        logger.info(">>getCommandDetailsByModuleNameAndSubModuleNameAndCommand()");
+
         ModuleRef moduleRef = this.moduleRefRepository.findByModuleName(moduleName);
 
         CommandRef commandRef = new CommandRef();
@@ -135,16 +140,18 @@ public class AnsibleDocsBootService {
             commandDetails.setCommand(commandRef);
             commandDetails.setInputFields(getInputFieldsByModuleNameAndSubModuleNameAndCommand(moduleName, subModuleName, command));
             commandDetails.setOutputFields(getOutputFieldsListByModuleNameAndSubModuleNameAndCommand(moduleName, subModuleName, command));
-
+            logger.info("<<getCommandDetailsByModuleNameAndSubModuleNameAndCommand()");
             return commandDetails;
         }
         else {
+            logger.info("<<getCommandDetailsByModuleNameAndSubModuleNameAndCommand()");
             return null;
         }
     }
 
     private List<InputFieldRef> getInputFieldsByModuleNameAndSubModuleNameAndCommand(@RequestParam(name = "module_name") String moduleName , @RequestParam(name = "sub_module_name") String subModuleName , @RequestParam (name = "command") String command)
     {
+        logger.info(">>getInputFieldsByModuleNameAndSubModuleNameAndCommand()");
         ModuleRef moduleRef = this.moduleRefRepository.findByModuleName(moduleName);
 
         CommandRef commandRef = new CommandRef();
@@ -169,16 +176,19 @@ public class AnsibleDocsBootService {
 
         if( null != commandRef )
         {
+            logger.info("<<getInputFieldsByModuleNameAndSubModuleNameAndCommand()");
             return this.inputFieldRefRepository.findByCommandRef(commandRef);
         }
         else
         {
+            logger.info("<<getInputFieldsByModuleNameAndSubModuleNameAndCommand()");
             return new ArrayList<InputFieldRef>();
         }
     }
 
     private List<OutputFieldDTO> getOutputFieldsListByModuleNameAndSubModuleNameAndCommand(@RequestParam(name = "module_name") String moduleName , @RequestParam(name = "sub_module_name", required = false) String subModuleName , @RequestParam (name = "command") String command)
     {
+        logger.info(">>getOutputFieldsListByModuleNameAndSubModuleNameAndCommand()");
         ModuleRef moduleRef = this.moduleRefRepository.findByModuleName(moduleName);
 
         List<OutputFieldDTO> outputFields = new ArrayList<OutputFieldDTO>();
@@ -236,16 +246,21 @@ public class AnsibleDocsBootService {
                 }
             }
 
+            logger.info("<<getOutputFieldsListByModuleNameAndSubModuleNameAndCommand()");
+
             return outputFields;
         }
         else
         {
+            logger.info("<<getOutputFieldsListByModuleNameAndSubModuleNameAndCommand()");
+
             return outputFields;
         }
     }
 
     private List<OutputFieldDTO> getChildrenAsList(int parentOutputFieldId)
     {
+        logger.info(">>getChildrenAsList()");
         List<OutputFieldDTO> childrenList = new ArrayList<OutputFieldDTO>();
 
         try {
@@ -279,14 +294,13 @@ public class AnsibleDocsBootService {
                     }
                 }
             }
-
+            logger.info("<<getChildrenAsList()");
             return childrenList;
         }
         catch(Exception e)
         {
-            e.printStackTrace();
             logger.error(e.getMessage());
-
+            logger.info("<<getChildrenAsList()");
             return childrenList;
         }
     }

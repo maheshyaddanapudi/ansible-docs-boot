@@ -6,7 +6,7 @@
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/dashboard?id=maheshyaddanapudi_ansible-docs-boot)
 
-Before starting, for details on Ansible Docs, refer to [Ansible Docs](https://docs.ansible.com/ansible/2.8/modules/modules_by_category.html)
+Before starting, for details on Ansible Docs, refer to <a href="https://docs.ansible.com/ansible/2.8/modules/modules_by_category.html">Ansible Documentation</a>
 
 ##### Note
 
