@@ -72,7 +72,8 @@ RUN echo "#!/bin/bash" > /appln/scripts/startup.sh \
   -DMYSQL_PASSWORD=\$MYSQL_PASSWORD \
   -DMYSQL_DATABASE_HOST=\$MYSQL_DATABASE_HOST \
   -DMYSQL_DATABASE_PORT=\$MYSQL_DATABASE_PORT \
-  -DMARIADB4J_DIR=\$MARIADB4J_DIR -Dserver.port=\$PORT \
+  -DMARIADB4J_DIR=\$MARIADB4J_DIR \
+  -Dserver.port=\$PORT \
   -jar ansible-docs-boot-$ANSIBLE_VERSION.jar ; \
   else java \
   -Dspring.profiles.active=\$SPRING_PROFILES_ACTIVE \
