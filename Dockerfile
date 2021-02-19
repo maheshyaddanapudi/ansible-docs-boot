@@ -11,7 +11,7 @@ ENV MYSQL_PASSWORD ansible
 ENV MYSQL_DATABASE_HOST localhost
 ENV MYSQL_DATABASE_PORT 3306
 ENV MARIADB4J_DIR /appln/data/mariadb4j
-ENV SPRING_PROFILES_ACTIVE basic,mariadb4j
+ENV SPRING_PROFILES_ACTIVE default
 ENV ANSIBLE_VERSION 2.8
 
 # Switching to root working  directory
