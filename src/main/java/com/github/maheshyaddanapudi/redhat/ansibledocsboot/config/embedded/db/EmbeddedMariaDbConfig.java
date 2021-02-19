@@ -129,7 +129,6 @@ public class EmbeddedMariaDbConfig {
 		dataSourceProperties.setProperty(Constants.MAX_LIFETIME, String.valueOf(Duration.ofMinutes(5).toMillis()));
 		dataSourceProperties.setProperty(Constants.CONNECTION_INIT_SQL, Constants.CONNECTION_INIT_SQL_VALUE);
 		dataSourceProperties.setProperty(Constants.DRIVER_CLASS_NAME, datasourceDriver);
-		dataSourceProperties.setProperty("driver-class-name", datasourceDriver);
 		dataSourceProperties.setProperty(Constants.JDBC_URL, databaseUrl);
 		dataSourceProperties.setProperty(Constants.USERNAME, datasourceUsername);
 		dataSourceProperties.setProperty(Constants.PASSWORD, datasourcePassword);
@@ -144,8 +143,6 @@ public class EmbeddedMariaDbConfig {
 		dataSourceProperties.setProperty(Constants.dataSource + Constants.DOT + Constants.CONNECTION_COLLATION,Constants.utf8mb4_unicode_ci);
 		dataSourceProperties.setProperty(Constants.dataSource + Constants.DOT + Constants.USE_SSL,Constants.FALSE);
 		dataSourceProperties.setProperty(Constants.dataSource + Constants.DOT + Constants.AUTO_RECONNECT,Constants.TRUE);
-
-		System.out.println(dataSourceProperties.toString());
 
 		final HikariConfig hikariConfig = new HikariConfig(dataSourceProperties);
 

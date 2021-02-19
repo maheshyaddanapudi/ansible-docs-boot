@@ -15,8 +15,8 @@ spring:
     continue-on-error: true
     driver-class-name: org.h2.Driver
     hikari:
-      initial-size: 10000
-      max-idle: 10000
+      initial-size: 1000
+      max-idle: 1000
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
