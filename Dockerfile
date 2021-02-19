@@ -65,7 +65,16 @@ RUN mv /appln/tmp/ansible-docs-boot/target/ansible-docs-boot*.jar /appln/bin/ans
 # Creating the startup script, by passing the env variables to run the jar. Logs are written directly to continer logs.
 RUN echo "#!/bin/bash" > /appln/scripts/startup.sh \
   && echo "cd /appln/bin/ansible-docs-boot" >> /appln/scripts/startup.sh \
-  && echo "java \
+  && echo "if [ \$PORT ] ; then java \
+  -Dspring.profiles.active=\$SPRING_PROFILES_ACTIVE \
+  -DMYSQL_DATABASE=\$MYSQL_DATABASE \
+  -DMYSQL_USER=\$MYSQL_USER \
+  -DMYSQL_PASSWORD=\$MYSQL_PASSWORD \
+  -DMYSQL_DATABASE_HOST=\$MYSQL_DATABASE_HOST \
+  -DMYSQL_DATABASE_PORT=\$MYSQL_DATABASE_PORT \
+  -DMARIADB4J_DIR=\$MARIADB4J_DIR -Dserver.port=\$PORT \
+  -jar ansible-docs-boot-$ANSIBLE_VERSION.jar ; \
+  else java \
   -Dspring.profiles.active=\$SPRING_PROFILES_ACTIVE \
   -DMYSQL_DATABASE=\$MYSQL_DATABASE \
   -DMYSQL_USER=\$MYSQL_USER \
@@ -73,7 +82,8 @@ RUN echo "#!/bin/bash" > /appln/scripts/startup.sh \
   -DMYSQL_DATABASE_HOST=\$MYSQL_DATABASE_HOST \
   -DMYSQL_DATABASE_PORT=\$MYSQL_DATABASE_PORT \
   -DMARIADB4J_DIR=\$MARIADB4J_DIR \
-  -jar ansible-docs-boot-$ANSIBLE_VERSION.jar" >> /appln/scripts/startup.sh
+  -jar ansible-docs-boot-$ANSIBLE_VERSION.jar ; \
+  fi" >> /appln/scripts/startup.sh
 
 # Owning the executable scripts
 RUN sudo chown -R ansible:ansible /appln/scripts /appln/bin
