@@ -4,11 +4,21 @@ server:
 spring:
   application:
     name: Ansible Docs Boot
+  h2:
+    console:
+      enabled: true
   datasource:
-    name: ${MYSQL_DATABASE}
-    username: ${MYSQL_USER}
-    password: ${MYSQL_PASSWORD}
+    url: jdbc:h2:mem:ansibledocsdb;Mode=MySQL
+    username: ansible
+    password: Ansible@1234
+    platform: h2
+    continue-on-error: true
+    driver-class-name: org.h2.Driver
+    hikari:
+      initial-size: 10000
+      max-idle: 10000
   jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
       ddl-auto: none
 
@@ -52,7 +62,7 @@ mariadb4j:
   dataDir: ${MARIADB4J_DIR}/data
   libDir: ${MARIADB4J_DIR}/lib
   baseDir: ${MARIADB4J_DIR}/base
-  port: 3600
+  port: 3306
   maxConnections: 100000
   wait:
     timeout: 18000000

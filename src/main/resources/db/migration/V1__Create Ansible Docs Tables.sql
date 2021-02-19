@@ -22,7 +22,7 @@ CREATE TABLE `sub_module_ref` (
   UNIQUE KEY `sub_module_id_UNIQUE` (`sub_module_id`),
   UNIQUE KEY `sub_module_name_UNIQUE` (`sub_module_name`,`module_id`),
   KEY `module_id_FKEY_ sub_module_ref_idx` (`module_id`),
-  CONSTRAINT `module_id_FKEY_ sub_module_ref` FOREIGN KEY (`module_id`) REFERENCES `module_ref` (`module_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `module_id_FKEY_sub_module_ref` FOREIGN KEY (`module_id`) REFERENCES `module_ref` (`module_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE `command_ref` (
@@ -58,9 +58,9 @@ CREATE TABLE `input_field_ref` (
   `update_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`input_field_id`),
   UNIQUE KEY `input_field_id_UNIQUE` (`input_field_id`),
-  UNIQUE KEY `field_name_UNIQUE` (`field_name`,`command_id`),
+  UNIQUE KEY `input_field_name_UNIQUE` (`field_name`,`command_id`),
   KEY `command_id_FKEY_ input_field_ref_idx` (`command_id`),
-  CONSTRAINT `command_id_FKEY_ input_field_ref` FOREIGN KEY (`command_id`) REFERENCES `command_ref` (`command_ref_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `command_id_FKEY_input_field_ref` FOREIGN KEY (`command_id`) REFERENCES `command_ref` (`command_ref_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE `output_field_ref` (
@@ -76,9 +76,9 @@ CREATE TABLE `output_field_ref` (
   `update_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`output_field_id`),
   UNIQUE KEY `output_field_id_UNIQUE` (`output_field_id`),
-  UNIQUE KEY `field_name_UNIQUE` (`field_name`,`command_id`,`parent_output_field_id`),
-  KEY `command_id_FKEY_ output_field_ref_idx` (`command_id`),
-  KEY `parent_output_field_id_FKEY_ output_field_ref_idx` (`parent_output_field_id`),
-  CONSTRAINT `command_id_FKEY_ output_field_ref` FOREIGN KEY (`command_id`) REFERENCES `command_ref` (`command_ref_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `parent_output_field_id_FKEY_ output_field_ref` FOREIGN KEY (`parent_output_field_id`) REFERENCES `output_field_ref` (`output_field_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  UNIQUE KEY `output_field_name_UNIQUE` (`field_name`,`command_id`,`parent_output_field_id`),
+  KEY `command_id_FKEY_output_field_ref_idx` (`command_id`),
+  KEY `parent_output_field_id_FKEY_output_field_ref_idx` (`parent_output_field_id`),
+  CONSTRAINT `command_id_FKEY_output_field_ref` FOREIGN KEY (`command_id`) REFERENCES `command_ref` (`command_ref_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `parent_output_field_id_FKEY_output_field_ref` FOREIGN KEY (`parent_output_field_id`) REFERENCES `output_field_ref` (`output_field_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
